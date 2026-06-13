@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Analysis Result</title>
+</head>
+<body>
+    <h1>Analysis Result</h1>
+
+    <h2>Summary</h2>
+    <p>{{ summary }}</p>
+
+    <h2>Sentiment Score</h2>
+    <p>{{ sentiment }}</p>
+
+    <h2>News Category</h2>
+    <p>{{ category }}</p>
+
+    <h2>Named Entities</h2>
+    <ul>
+        {% for entity, label in named_entities.items() %}
+            <li><strong>{{ entity }}</strong>: {{ label }}</li>
+        {% endfor %}
+    </ul>
+
+    <br><a href="/">Analyze another article</a>
+</body>
+</html>

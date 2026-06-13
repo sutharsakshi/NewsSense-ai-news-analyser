@@ -5,3 +5,11 @@ textblob
 requests
 beautifulsoup4
 joblib
+
+flask
+nltk
+spacy
+textblob
+requests
+beautifulsoup4
+joblib
