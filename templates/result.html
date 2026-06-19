@@ -3,25 +3,50 @@
 <head>
     <title>Analysis Result</title>
 </head>
+
 <body>
-    <h1>Analysis Result</h1>
+
+    <h1>News Analysis Result</h1>
+
+    <h2>Original Text</h2>
+    <p>{{ original_text }}</p>
+
+    <hr>
 
     <h2>Summary</h2>
     <p>{{ summary }}</p>
 
-    <h2>Sentiment Score</h2>
-    <p>{{ sentiment }}</p>
+    <hr>
+
+    <h2>Sentiment</h2>
+    <p>
+        {{ sentiment }}
+        (Polarity Score: {{ polarity }})
+    </p>
+    
+    <hr>
 
     <h2>News Category</h2>
     <p>{{ category }}</p>
+    
+    <hr>
 
     <h2>Named Entities</h2>
+
     <ul>
-        {% for entity, label in named_entities.items() %}
-            <li><strong>{{ entity }}</strong>: {{ label }}</li>
+        {% for entity, label in entities %}
+
+            <li>
+                <strong>{{ entity }}</strong>
+                → {{ label }}
+            </li>
+
         {% endfor %}
     </ul>
 
-    <br><a href="/">Analyze another article</a>
+    <hr>
+
+    <a href="/">Analyze Another Article</a>
+
 </body>
 </html>

@@ -1,44 +1,98 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>News NLP Analyzer</title>
-</head>
-<body>
-    <h1>News NLP Analyzer</h1>
-    <form action="/" method="POST" enctype="multipart/form-data">
-        <label>Select input type:</label><br>
-        <input type="radio" name="input_type" value="manual" checked> Manual Text<br>
-        <input type="radio" name="input_type" value="file"> Upload File<br>
-        <input type="radio" name="input_type" value="url"> URL<br><br>
-
-        <div id="manual_input">
-            <textarea name="manual_text" rows="10" cols="60" placeholder="Enter your news article here..."></textarea>
-        </div>
-
-        <div id="file_input" style="display:none;">
-            <input type="file" name="file">
-        </div>
-
-        <div id="url_input" style="display:none;">
-            <input type="text" name="url" placeholder="Enter article URL">
-        </div><br>
-
-        <input type="submit" value="Analyze">
-    </form>
+    <title>NewsSense</title>
 
     <script>
-        const radios = document.querySelectorAll('input[name="input_type"]');
-        const manual = document.getElementById('manual_input');
-        const file = document.getElementById('file_input');
-        const url = document.getElementById('url_input');
 
-        radios.forEach(radio => {
-            radio.addEventListener('change', () => {
-                manual.style.display = radio.value === 'manual' ? 'block' : 'none';
-                file.style.display = radio.value === 'file' ? 'block' : 'none';
-                url.style.display = radio.value === 'url' ? 'block' : 'none';
-            });
-        });
+        function toggleInput() {
+
+            const inputType =
+                document.querySelector(
+                    'input[name="input_type"]:checked'
+                ).value;
+
+            if (inputType === "text") {
+
+                document.getElementById("text_input").style.display = "block";
+
+                document.getElementById("url_input").style.display = "none";
+
+            }
+
+            else {
+
+                document.getElementById("text_input").style.display = "none";
+
+                document.getElementById("url_input").style.display = "block";
+
+            }
+        }
+
     </script>
+
+</head>
+
+<body onload="toggleInput()">
+
+    <h1>NewsSense - AI News Analyzer</h1>
+
+    <form action="/analyze" method="POST">
+
+        <h3>Select Input Type</h3>
+
+        <input
+            type="radio"
+            name="input_type"
+            value="text"
+            checked
+            onclick="toggleInput()"
+        >
+        Manual Text
+
+        <input
+            type="radio"
+            name="input_type"
+            value="url"
+            onclick="toggleInput()"
+        >
+        News URL
+
+        <br><br>
+
+        <!-- TEXT INPUT -->
+
+        <div id="text_input">
+
+            <textarea
+                name="news_text"
+                rows="15"
+                cols="80"
+                placeholder="Paste news article here..."
+            ></textarea>
+
+        </div>
+
+        <!-- URL INPUT -->
+
+        <div id="url_input">
+
+            <input
+                type="text"
+                name="news_url"
+                size="80"
+                placeholder="Paste article URL here..."
+            >
+
+        </div>
+
+        <br><br>
+
+        <button type="submit">
+            Analyze News
+        </button>
+
+    </form>
+
 </body>
 </html>
